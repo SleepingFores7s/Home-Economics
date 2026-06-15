@@ -1,0 +1,9 @@
+/* Todo
+    DONE 1. Make updated ER-diagram (Add receipt_items, categories)
+    2. Create Entity classes
+    3. create REST controllers
+    4. Create Service classes
+    5. Create Repository classes
+    6. Implement BCrypt auth for passwords
+    7. Start on Frontend
+*/

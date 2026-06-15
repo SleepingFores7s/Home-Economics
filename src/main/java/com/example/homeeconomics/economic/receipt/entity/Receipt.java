@@ -2,10 +2,8 @@ package com.example.homeeconomics.economic.receipt.entity;
 
 import com.example.homeeconomics.economic.user.entity.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import javax.annotation.processing.Generated;
 import java.sql.Date;
 
 @Entity

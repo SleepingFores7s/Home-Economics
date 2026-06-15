@@ -1,6 +1,9 @@
 package com.example.homeeconomics.economic.user.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -9,12 +12,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name= "username", unique = true)
+    @NotBlank
+    @Size(min = 4, max = 20)
+    @Column(name= "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name= "email", unique = true)
+    @NotBlank
+    @Email
+    @Column(name= "email", unique = true, nullable = false)
     private String email;
 
+    @NotBlank
     @Column(name = "password")
     private String password;
 

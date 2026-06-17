@@ -3,6 +3,7 @@ package com.example.homeeconomics.economic.user.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Date;
@@ -14,29 +15,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min = 4, max = 20)
     @Column(name= "username", unique = true, nullable = false)
     private String username;
 
-    @NotBlank
-    @Email
     @Column(name= "email", unique = true, nullable = false)
     private String email;
 
-    @NotBlank
     @Column(name = "password")
     private String password;
 
-    @NotBlank
     @Column(name = "created_at")
     private Date createdAt;
 
-    @NotBlank
     @Column(name = "updated_at")
     private Date updatedAt;
 
-
+    // Getter/Setter
     public void setId(Long id) {
         this.id = id;
     }

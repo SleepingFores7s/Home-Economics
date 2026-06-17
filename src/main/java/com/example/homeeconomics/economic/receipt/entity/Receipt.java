@@ -20,14 +20,13 @@ public class Receipt {
     @Column(name = "store_name", nullable = true)
     private String storeName;
 
-    @NotNull
     @Column(name = "purchase_date", nullable = false)
     private Date purchaseDate;
 
-    @NotNull
     @Column(name = "total_receipt_cost")
     private Double totalCost;
 
+    // Getter/Setter
     public Long getId() {
         return id;
     }

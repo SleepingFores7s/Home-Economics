@@ -1,12 +1,8 @@
 package com.example.homeeconomics.economic.user.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class User {
@@ -29,6 +25,16 @@ public class User {
 
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    public User() {}
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
 
     // Getter/Setter
     public void setId(Long id) {

@@ -5,7 +5,7 @@
     3. create REST controllers
     4. Create Service classes
     (DONE) 5. Create Repository classes
-    6. Implement BCrypt auth for passwords
+    (DONE) 6. Implement BCrypt auth for passwords
     7. Implement JWT
     -
     Frontend---

@@ -1,0 +1,17 @@
+/* Todo
+    DONE 1. Make updated ER-diagram (Add receipt_items, categories)
+    Backend---
+    (DONE) 2. Create Entity classes
+    3. create REST controllers
+    4. Create Service classes
+    (DONE) 5. Create Repository classes
+    (DONE) 6. Implement BCrypt auth for passwords
+    7. Implement JWT
+    -
+    Frontend---
+    1. Start on Frontend
+    2. Make Login Page
+    3. Make Main Page (Where user navigates to input new receipt/look att existing receipts)
+    4. Make Receipt input page
+    5. make Receipt Overview page (Spending, income etc.)
+*/

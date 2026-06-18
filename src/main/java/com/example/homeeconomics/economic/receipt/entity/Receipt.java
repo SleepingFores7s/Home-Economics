@@ -1,8 +1,9 @@
 package com.example.homeeconomics.economic.receipt.entity;
 
+import com.example.homeeconomics.economic.user.entity.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
-import javax.annotation.processing.Generated;
 import java.sql.Date;
 
 @Entity
@@ -11,6 +12,10 @@ public class Receipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "store_name", nullable = true)
     private String storeName;
@@ -21,14 +26,19 @@ public class Receipt {
     @Column(name = "total_receipt_cost")
     private Double totalCost;
 
-    @Column(name = "category")
-    private String category;
-
+    // Getter/Setter
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getStoreName() {
@@ -50,12 +60,5 @@ public class Receipt {
     }
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

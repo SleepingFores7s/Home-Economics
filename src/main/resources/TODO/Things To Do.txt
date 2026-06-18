@@ -1,6 +1,6 @@
 /* Todo
-    DONE 1. Make updated ER-diagram (Add receipt_items, categories)
     Backend---
+    (DONE) 1. Make updated ER-diagram (Add receipt_items, categories)
     (DONE) 2. Create Entity classes
     3. create REST controllers
     4. Create Service classes

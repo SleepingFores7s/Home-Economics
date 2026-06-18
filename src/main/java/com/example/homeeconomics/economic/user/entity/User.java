@@ -1,8 +1,11 @@
 package com.example.homeeconomics.economic.user.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -20,11 +23,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @CreationTimestamp
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     public User() {}
 
@@ -32,8 +37,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
     }
 
     // Getter/Setter
@@ -65,17 +68,17 @@ public class User {
         this.password = password;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

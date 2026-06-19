@@ -1,5 +1,7 @@
 package com.example.homeeconomics.economic.user.dto;
 
+import com.example.homeeconomics.economic.validation.annotations.ValidPassword;
+import com.example.homeeconomics.economic.validation.annotations.ValidUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,7 +11,7 @@ import java.util.Date;
 public class RegisterUserDto {
 
     @NotBlank
-    @Size(min = 8,max = 30, message = "Username must be between 8 and 30 characters long")
+    @ValidUsername
     private String username;
 
     @NotBlank
@@ -17,6 +19,7 @@ public class RegisterUserDto {
     private String email;
 
     @NotBlank
+    @ValidPassword
     private String password;
 
     // Getter/Setter

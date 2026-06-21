@@ -6,6 +6,7 @@ import com.example.homeeconomics.economic.user.dto.UserResponseDto;
 import com.example.homeeconomics.economic.user.entity.User;
 import com.example.homeeconomics.economic.user.repository.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,22 @@ public class UserService {
 
     public UserResponseDto login(UserLoginDto userLoginDto) {
 
-        //TODO make a check if the username exists, then if the password matches and return responseDto
+        String userInput = userLoginDto.getUsernameOrEmail();
+
+        User user;
+
+        if (userInput.contains("@")) {
+            user = userRepository.findByEmail(userInput);
+        } else {
+            user = userRepository.findByUsername(userInput);
+        }
+
+        if (user == null || !passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
+            throw new BadCredentialsException("Invalid username/email or password");
+        }
+
+        return new UserResponseDto(user);
+
     }
 
 }

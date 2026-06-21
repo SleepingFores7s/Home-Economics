@@ -27,6 +27,9 @@ public class UserController {
     @GetMapping("api/login")
     public ResponseEntity<UserResponseDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
         UserResponseDto responseDto = userService.login(userLoginDto);
+
+        //TODO Catch the BadCredentials error,
+
     }
 
     @GetMapping("api/user")

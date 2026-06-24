@@ -6,9 +6,11 @@ import com.example.homeeconomics.economic.user.dto.UserLoginDto;
 import com.example.homeeconomics.economic.user.dto.UserResponseDto;
 import com.example.homeeconomics.economic.user.entity.User;
 import com.example.homeeconomics.economic.user.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserService {
@@ -23,14 +25,22 @@ public class UserService {
 
     public UserResponseDto registerUser(UserRegisterDto dto) {
 
-        return new UserResponseDto(userRepository.save(
-                new User(
-                        dto.getUsername(),
-                        dto.getEmail(),
-                        passwordEncoder.encode(dto.getPassword()
-                        )
+        User existingUser = userRepository.findByUsername(dto.getUsername());
+
+        if (existingUser != null) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "User already exists!"
+            );
+        }
+
+        User newUser = new User(
+                dto.getUsername(),
+                dto.getEmail(),
+                passwordEncoder.encode(dto.getPassword()
                 )
-        ));
+        );
+
+        return new UserResponseDto(userRepository.save(newUser));
     }
 
     public UserResponseDto login(UserLoginDto userLoginDto) {

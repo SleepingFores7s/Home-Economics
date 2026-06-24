@@ -4,11 +4,8 @@ import com.example.homeeconomics.economic.validation.annotations.ValidPassword;
 import com.example.homeeconomics.economic.validation.annotations.ValidUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
-import java.util.Date;
-
-public class RegisterUserDto {
+public class UserRegisterDto {
 
     @NotBlank
     @ValidUsername

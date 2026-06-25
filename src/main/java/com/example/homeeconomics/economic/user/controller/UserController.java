@@ -1,9 +1,6 @@
 package com.example.homeeconomics.economic.user.controller;
 
-import com.example.homeeconomics.economic.user.dto.UserDeleteDto;
-import com.example.homeeconomics.economic.user.dto.UserRegisterDto;
-import com.example.homeeconomics.economic.user.dto.UserLoginDto;
-import com.example.homeeconomics.economic.user.dto.UserResponseDto;
+import com.example.homeeconomics.economic.user.dto.*;
 import com.example.homeeconomics.economic.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -49,10 +46,30 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/api/user/delete")
-    public ResponseEntity<?> deleteUser(@Valid @RequestBody UserDeleteDto dto) {
+    @PatchMapping("/api/user/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id,
+                                        @Valid @RequestBody UserUpdateDto dto) {
+
         try {
-            userService.deleteUser(dto);
+            UserResponseDto responseDto = userService.update(id, dto);
+
+            return ResponseEntity
+                    .ok(responseDto);
+
+        }catch (BadCredentialsException e) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(e.getMessage());
+        }
+
+
+    }
+
+    @DeleteMapping("/api/user/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id,
+                                        @Valid @RequestBody UserDeleteDto dto) {
+        try {
+            userService.deleteUser(id, dto);
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
                     .build();

@@ -3,10 +3,10 @@
     (DONE) 1. Make updated ER-diagram (Add receipt_items, categories)
     (DONE) 2. Create Entity classes
     3. create REST controllers
-        - Get
-        - Create
-        - Update
-        - Delete
+        - Get (USER, )
+        - Create (USER, )
+        - Update (USER, )
+        - Delete (USER, )
     4. Create Service classes
     (DONE) 5. Create Repository classes
     (DONE) 6. Implement BCrypt auth for passwords

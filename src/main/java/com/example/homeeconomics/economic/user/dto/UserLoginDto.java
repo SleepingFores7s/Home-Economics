@@ -1,9 +1,7 @@
 package com.example.homeeconomics.economic.user.dto;
 
 import com.example.homeeconomics.economic.validation.annotations.ValidPassword;
-import com.example.homeeconomics.economic.validation.annotations.ValidUsername;
 import com.example.homeeconomics.economic.validation.annotations.ValidUsernameOrEmail;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class UserLoginDto {

@@ -1,9 +1,6 @@
 package com.example.homeeconomics.economic.user.service;
 
-import com.example.homeeconomics.economic.user.dto.UserDeleteDto;
-import com.example.homeeconomics.economic.user.dto.UserRegisterDto;
-import com.example.homeeconomics.economic.user.dto.UserLoginDto;
-import com.example.homeeconomics.economic.user.dto.UserResponseDto;
+import com.example.homeeconomics.economic.user.dto.*;
 import com.example.homeeconomics.economic.user.entity.User;
 import com.example.homeeconomics.economic.user.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -45,9 +42,7 @@ public class UserService {
 
     public UserResponseDto login(UserLoginDto userLoginDto) {
 
-        String userInput = userLoginDto.getUsernameOrEmail();
-
-        User user = getUserByLoginIdentifier(userInput);
+        User user = getUserByLoginIdentifier(userLoginDto.getUsernameOrEmail());
 
         if (user == null || !passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("Invalid username/email or password");
@@ -57,15 +52,36 @@ public class UserService {
 
     }
 
-    public void deleteUser(UserDeleteDto deleteDto) {
+    public UserResponseDto update(Long id, UserUpdateDto dto) {
 
-        String userInput = deleteDto.getUsernameOrEmail();
+        User existingUser = userRepository.getReferenceById(id);
 
-        User user = getUserByLoginIdentifier(userInput);
+        if (!passwordEncoder.matches(dto.getCurrentPassword(), existingUser.getPassword())) {
+            throw new BadCredentialsException("Invalid password");
+        }
+
+        if (dto.getUsername() != null) {
+            existingUser.setUsername(dto.getUsername());
+        }
+        if (dto.getNewPassword() != null) {
+            existingUser.setPassword(passwordEncoder.encode(dto.getNewPassword()));
+        }
+        if (dto.getEmail() != null) {
+            existingUser.setEmail(dto.getEmail());
+        }
+
+        return new UserResponseDto(userRepository.save(existingUser));
+
+
+    }
+
+    public void deleteUser(Long id, UserDeleteDto deleteDto) {
+
+        User user = userRepository.getReferenceById(id);
 
         if (passwordEncoder.matches(deleteDto.getPassword(), user.getPassword())) {
             userRepository.delete(user);
-        }else {
+        } else {
             throw new BadCredentialsException("Invalid username/email or password");
         }
     }

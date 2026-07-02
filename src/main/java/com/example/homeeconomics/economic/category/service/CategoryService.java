@@ -1,5 +1,7 @@
 package com.example.homeeconomics.economic.category.service;
 
+import com.example.homeeconomics.core.exception.customexceptions.ObjectAlreadyExistsException;
+import com.example.homeeconomics.economic.category.dto.AddCategoryDto;
 import com.example.homeeconomics.economic.category.entity.Category;
 import com.example.homeeconomics.economic.category.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -13,19 +15,16 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category addCategory(Category category){
+    public Category addCategory(AddCategoryDto dto) {
 
+        //TODO make method return a dto instead of the object/entity
 
-        //TODO - make a check to see if the category already exists or not
-        try{
-
-            if(categoryRepository.)
-
-        }catch (Exception e) {
-
+        if (categoryRepository.categoryExistByName(dto.getCategory())) {
+            throw new ObjectAlreadyExistsException("Category with name " + dto.getCategory() + " already exists");
         }
 
-        return categoryRepository.save(category);
+        Category newCategory = new Category(dto.getCategory());
+        return categoryRepository.save(newCategory);
     }
 
 }

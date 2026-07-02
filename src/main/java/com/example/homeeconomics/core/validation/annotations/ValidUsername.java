@@ -1,6 +1,6 @@
-package com.example.homeeconomics.economic.validation.annotations;
+package com.example.homeeconomics.core.validation.annotations;
 
-import com.example.homeeconomics.economic.validation.validators.ValidUsernameValidator;
+import com.example.homeeconomics.core.validation.validators.ValidUsernameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

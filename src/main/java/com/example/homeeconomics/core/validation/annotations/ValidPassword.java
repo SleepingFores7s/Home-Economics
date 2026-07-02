@@ -1,7 +1,7 @@
-package com.example.homeeconomics.economic.validation.annotations;
+package com.example.homeeconomics.core.validation.annotations;
 
 
-import com.example.homeeconomics.economic.validation.validators.ValidPasswordValidator;
+import com.example.homeeconomics.core.validation.validators.ValidPasswordValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

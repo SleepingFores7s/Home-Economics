@@ -2,6 +2,7 @@ package com.example.homeeconomics.economic.category.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -9,8 +10,15 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "category_name")
+    @Size(min = 1, max = 100)
+    @Column(name = "category_name", unique = true)
     private String category;
+
+    public Category() {}
+
+    public Category(String category) {
+        this.category = category;
+    }
 
     // Getter/Setter
     public void setId(Long id) {

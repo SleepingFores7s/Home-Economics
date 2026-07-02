@@ -1,4 +1,4 @@
-package com.example.homeeconomics.economic.security.password;
+package com.example.homeeconomics.core.security.password;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.example.homeeconomics.economic.user.dto;
 
-import com.example.homeeconomics.economic.validation.annotations.ValidPassword;
-import com.example.homeeconomics.economic.validation.annotations.ValidUsernameOrEmail;
+import com.example.homeeconomics.core.validation.annotations.ValidPassword;
+import com.example.homeeconomics.core.validation.annotations.ValidUsernameOrEmail;
 import jakarta.validation.constraints.NotBlank;
 
 public class UserDeleteDto {

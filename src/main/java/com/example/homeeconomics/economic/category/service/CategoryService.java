@@ -6,6 +6,8 @@ import com.example.homeeconomics.economic.category.entity.Category;
 import com.example.homeeconomics.economic.category.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
 
@@ -27,4 +29,12 @@ public class CategoryService {
         return categoryRepository.save(newCategory);
     }
 
+    public List<Category> getAllCategories() {
+
+        try {
+            return categoryRepository.findAll();
+        }catch (Exception e){
+            throw new Exception("Something went wrong, could not return categoru list.");
+        }
+    }
 }
